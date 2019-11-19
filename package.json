@@ -1,7 +1,7 @@
 {
-  "name": "typescript-library-skeleton",
+  "name": "unitized",
   "version": "0.0.0-development",
-  "description": "my personal ES2015 library project skeleton",
+  "description": "nice API for handling numbers with associated units",
   "main": "index.js",
   "sideEffects": false,
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "config": {
     "lint": "--cache --ext .js,.ts src test",
-    "mocha": "-r test/configure.js 'src/**/*.spec.ts'",
+    "mocha": "test/configure.js 'src/**/*.spec.ts'",
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
@@ -66,17 +66,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jedwards1211/typescript-library-skeleton.git"
+    "url": "https://github.com/jedwards1211/unitized.git"
   },
   "keywords": [
-    "typescript"
+    "unit-conversion"
   ],
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedwards1211/typescript-library-skeleton/issues"
+    "url": "https://github.com/jedwards1211/unitized/issues"
   },
-  "homepage": "https://github.com/jedwards1211/typescript-library-skeleton#readme",
+  "homepage": "https://github.com/jedwards1211/unitized#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
