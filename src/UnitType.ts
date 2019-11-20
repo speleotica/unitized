@@ -10,6 +10,7 @@ export default abstract class UnitType<T extends UnitType<T>> {
   }
 
   public convert(value: number, from: Unit<T>, to: Unit<T>): number {
+    if (from === to) return value
     return to.fromBase(from.toBase(value))
   }
 }

@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { UnitizedNumber, Length } from '.'
+import { Length } from '.'
 
 describe('UnitizedNumber', () => {
   it('.isNaN', () => {

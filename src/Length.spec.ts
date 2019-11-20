@@ -1,12 +1,24 @@
 /* eslint-env mocha */
 
-import { expect } from 'chai'
 import { Length } from './index'
+import checkConversions from './checkConversions.spec'
 
 describe('Length', () => {
-  it('works', () => {
-    expect(Length.feet(2).get(Length.meters)).to.equal(2 * 0.3048)
-    expect(Length.miles(1).get(Length.kilometers)).to.equal(1.609344)
-    expect(Length.yards(1).get(Length.meters)).to.equal(0.9144000000000001)
-  })
+  checkConversions(0, Length.yards(2), Length.feet(6), Length.inches(72))
+  checkConversions(
+    0,
+    Length.kilometers(1.6),
+    Length.meters(1600),
+    Length.centimeters(160000)
+  )
+  checkConversions(
+    1e-8,
+    Length.kilometers(0.0003048),
+    Length.meters(0.3048),
+    Length.centimeters(30.48),
+    Length.miles(1 / 5280),
+    Length.yards(1 / 3),
+    Length.feet(1),
+    Length.inches(12)
+  )
 })

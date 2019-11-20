@@ -1,12 +1,21 @@
 /* eslint-env mocha */
 
-import { expect } from 'chai'
-import { Angle, Length } from './index'
+import { Angle } from './index'
+import checkConversions from './checkConversions.spec'
 
 describe('Angle', () => {
-  it('works', () => {
-    expect(Angle.degrees(45).get(Angle.percentGrade)).to.equal(
-      99.99999999999999
-    )
-  })
+  checkConversions(
+    0,
+    Angle.degrees(90),
+    Angle.gradians(100),
+    Angle.milsNATO(1600)
+  )
+  checkConversions(
+    1e-12,
+    Angle.radians(Math.PI / 4),
+    Angle.degrees(45),
+    Angle.gradians(50),
+    Angle.milsNATO(800),
+    Angle.percentGrade(100)
+  )
 })

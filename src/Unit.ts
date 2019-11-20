@@ -22,7 +22,8 @@ export default class Unit<T extends UnitType<T>> {
       toBaseFactor?: number
     }
   ) {
-    const unitize = (value: number) => new UnitizedNumber(value, this)
+    const unitize = (value: number): UnitizedNumber<T> =>
+      new UnitizedNumber(value, this)
     Object.setPrototypeOf(unitize, this)
 
     this.type = type

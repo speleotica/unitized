@@ -1,4 +1,4 @@
-import UnitType from './UnitType'
+import FactorTableUnitType from './FactorTableUnitType'
 import Unit from './Unit'
 import UnitizedNumber from './UnitizedNumber'
 import Length from './Length'
@@ -19,8 +19,14 @@ class AngleUnit extends Unit<Angle> {
       range: number
     }
   ) {
-    const result = super(type, id, { fromBaseFactor, toBaseFactor })
+    super(type, id, { fromBaseFactor, toBaseFactor })
     this.range = new UnitizedNumber(range, this)
+
+    const unitize = (value: number): UnitizedNumber<Angle> =>
+      new UnitizedNumber(value, this)
+    Object.setPrototypeOf(unitize, this)
+
+    return unitize as any
   }
 }
 
@@ -34,13 +40,12 @@ class PercentGradeUnit extends AngleUnit {
       toBaseFactor: NaN,
       range: NaN,
     })
-  }
 
-  get fromBaseFactor(): number {
-    throw new Error('percent grade is not a linear unit')
-  }
-  get toBaseFactor(): number {
-    throw new Error('percent grade is not a linear unit')
+    const unitize = (value: number): UnitizedNumber<Angle> =>
+      new UnitizedNumber(value, this)
+    Object.setPrototypeOf(unitize, this)
+
+    return unitize as any
   }
 
   public fromBase(angle: number): number {
@@ -51,9 +56,36 @@ class PercentGradeUnit extends AngleUnit {
   }
 }
 
-export default class Angle extends UnitType<Angle> {
+export default class Angle extends FactorTableUnitType<Angle> {
   private readonly __nominal: void = undefined
   public static readonly type: Angle = new Angle()
+
+  constructor() {
+    super({
+      factors: {
+        rad: {
+          deg: 180 / Math.PI,
+          grad: 200 / Math.PI,
+          mil: 3200 / Math.PI,
+        },
+        deg: {
+          rad: Math.PI / 180,
+          grad: 200 / 180,
+          mil: 3200 / 180,
+        },
+        grad: {
+          rad: Math.PI / 200,
+          deg: 180 / 200,
+          mil: 3200 / 200,
+        },
+        mil: {
+          rad: Math.PI / 3200,
+          deg: 180 / 3200,
+          grad: 200 / 3200,
+        },
+      },
+    })
+  }
 
   public static readonly radians = new AngleUnit(Angle.type, 'rad', {
     fromBaseFactor: 1,
@@ -71,8 +103,8 @@ export default class Angle extends UnitType<Angle> {
     range: 400,
   }) as CallableAngleUnit
   public static readonly milsNATO = new AngleUnit(Angle.type, 'mil', {
-    fromBaseFactor: 200 / Math.PI,
-    toBaseFactor: Math.PI / 200,
+    fromBaseFactor: 3200 / Math.PI,
+    toBaseFactor: Math.PI / 3200,
     range: 6400,
   }) as CallableAngleUnit
   public static readonly percentGrade = new PercentGradeUnit(
