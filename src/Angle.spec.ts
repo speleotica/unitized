@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai'
-import { Angle } from './index'
+import { Angle, Length } from './index'
 
 describe('Angle', () => {
   it('works', () => {

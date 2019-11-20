@@ -1,8 +1,9 @@
 import UnitType from './UnitType'
 import Unit, { CallableUnit } from './Unit'
-import { UnitizedNumber } from '.'
+import UnitizedNumber from './UnitizedNumber'
 
 export default class Length extends UnitType<Length> {
+  private readonly __nominal: void = undefined
   public static readonly type: Length = new Length()
 
   public static readonly kilometers = new Unit(Length.type, 'km', {

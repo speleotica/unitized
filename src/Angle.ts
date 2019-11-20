@@ -1,12 +1,13 @@
 import UnitType from './UnitType'
-import Unit, { CallableUnit } from './Unit'
-import { UnitizedNumber, Length } from '.'
+import Unit from './Unit'
+import UnitizedNumber from './UnitizedNumber'
+import Length from './Length'
 
 class AngleUnit extends Unit<Angle> {
   public readonly range: UnitizedNumber<Angle>
 
   constructor(
-    type: UnitType<Angle>,
+    type: Angle,
     id: string,
     {
       fromBaseFactor,
@@ -20,14 +21,14 @@ class AngleUnit extends Unit<Angle> {
   ) {
     const result = super(type, id, { fromBaseFactor, toBaseFactor })
     this.range = new UnitizedNumber(range, this)
-    return result as any
   }
 }
+
 export type CallableAngleUnit = AngleUnit &
   ((value: number) => UnitizedNumber<Angle>)
 
 class PercentGradeUnit extends AngleUnit {
-  constructor(type: UnitType<Angle>) {
+  constructor(type: Angle) {
     super(type, '% grade', {
       fromBaseFactor: NaN,
       toBaseFactor: NaN,
@@ -51,6 +52,7 @@ class PercentGradeUnit extends AngleUnit {
 }
 
 export default class Angle extends UnitType<Angle> {
+  private readonly __nominal: void = undefined
   public static readonly type: Angle = new Angle()
 
   public static readonly radians = new AngleUnit(Angle.type, 'rad', {
@@ -121,10 +123,6 @@ export default class Angle extends UnitType<Angle> {
   public static opposite(a: UnitizedNumber<Angle>): UnitizedNumber<Angle> {
     const { range } = a.unit as AngleUnit
     return Angle.normalize(a.add(range.mul(0.5)))
-  }
-
-  constructor() {
-    return super() as any
   }
 
   init(): void {

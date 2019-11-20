@@ -6,13 +6,13 @@ export type CallableUnit<T extends UnitType<T>> = Unit<T> &
 
 export default class Unit<T extends UnitType<T>> {
   private readonly __nominal: void
-  public readonly type: UnitType<T>
+  public readonly type: T
   public readonly id: string
   public readonly fromBaseFactor: number
   public readonly toBaseFactor: number
 
   constructor(
-    type: UnitType<T>,
+    type: T,
     id: string,
     {
       fromBaseFactor,
@@ -22,8 +22,7 @@ export default class Unit<T extends UnitType<T>> {
       toBaseFactor?: number
     }
   ) {
-    const unitize = (value: number): UnitizedNumber<T> =>
-      new UnitizedNumber(value, this)
+    const unitize = (value: number) => new UnitizedNumber(value, this)
     Object.setPrototypeOf(unitize, this)
 
     this.type = type
