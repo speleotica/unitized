@@ -2,6 +2,8 @@
 !**/*.js
 !**/*.js.flow
 !**/*.d.ts
+**/*.spec.js
+**/*.spec.d.ts
 !/*.md
 !yarn.lock
 /src

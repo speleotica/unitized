@@ -1,6 +1,9 @@
 import UnitType from './UnitType'
 import UnitizedNumber from './UnitizedNumber'
 
+export type CallableUnit<T extends UnitType<T>> = Unit<T> &
+  ((value: number) => UnitizedNumber<T>)
+
 export default class Unit<T extends UnitType<T>> {
   private readonly __nominal: void
   public readonly type: UnitType<T>
