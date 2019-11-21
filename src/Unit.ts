@@ -6,10 +6,10 @@ export type CallableUnit<T extends UnitType<T>> = Unit<T> &
 
 export default class Unit<T extends UnitType<T>> {
   private readonly __nominal: void
-  public readonly type: T
-  public readonly id: string
-  public readonly fromBaseFactor: number
-  public readonly toBaseFactor: number
+  readonly type: T
+  readonly id: string
+  readonly fromBaseFactor: number
+  readonly toBaseFactor: number
 
   constructor(
     type: T,
@@ -34,18 +34,18 @@ export default class Unit<T extends UnitType<T>> {
     return unitize as any
   }
 
-  public of(value: number): UnitizedNumber<T> {
+  of(value: number): UnitizedNumber<T> {
     return new UnitizedNumber(value, this)
   }
 
-  public fromBase(value: number): number {
+  fromBase(value: number): number {
     return value * this.fromBaseFactor
   }
-  public toBase(value: number): number {
+  toBase(value: number): number {
     return value * this.toBaseFactor
   }
 
-  public toString(): string {
+  toString(): string {
     return this.id
   }
 

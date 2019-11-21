@@ -23,7 +23,7 @@ export default abstract class FactorTableUnitType<
     }
   }
 
-  public convert(value: number, from: Unit<T>, to: Unit<T>): number {
+  convert(value: number, from: Unit<T>, to: Unit<T>): number {
     const factor0 = this.factors[from.id]
     if (!factor0) return super.convert(value, from, to)
     const factor = factor0[to.id]

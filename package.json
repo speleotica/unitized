@@ -114,12 +114,13 @@
     "husky": "^1.1.4",
     "istanbul": "^0.4.5",
     "lint-staged": "^8.0.4",
+    "lodash": "^4.17.15",
     "mocha": "^6.2.1",
     "nyc": "^13.1.0",
     "prettier": "^1.15.2",
     "prettier-eslint": "^8.8.2",
     "rimraf": "^2.6.0",
-    "semantic-release": "^15.1.4",
+    "semantic-release": "^15.13.31",
     "typescript": "^3.7.2"
   },
   "dependencies": {
