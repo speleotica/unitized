@@ -1,5 +1,5 @@
 {
-  "name": "unitized",
+  "name": "@speleotica/unitized",
   "version": "0.0.0-development",
   "description": "nice API for handling numbers with associated units",
   "main": "index.js",
@@ -69,7 +69,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jedwards1211/unitized.git"
+    "url": "https://github.com/speleotica/unitized.git"
   },
   "keywords": [
     "unit-conversion"
@@ -77,9 +77,9 @@
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedwards1211/unitized/issues"
+    "url": "https://github.com/speleotica/unitized/issues"
   },
-  "homepage": "https://github.com/jedwards1211/unitized#readme",
+  "homepage": "https://github.com/speleotica/unitized#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
