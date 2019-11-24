@@ -1,9 +1,22 @@
-/* eslint-env mocha */
-
-import { Length } from './index'
+import { describe } from 'mocha'
+import { Length, UnitizedNumber } from './index'
 import checkConversions from './checkConversions.spec'
+import { expect } from 'chai'
 
 describe('Length', () => {
+  for (const unit of [
+    Length.meters,
+    Length.centimeters,
+    Length.kilometers,
+    Length.feet,
+    Length.inches,
+    Length.yards,
+    Length.miles,
+  ]) {
+    it(`calling ${unit} as a function works`, () => {
+      expect(unit(2)).to.deep.equal(new UnitizedNumber(2, unit))
+    })
+  }
   checkConversions(0, Length.yards(2), Length.feet(6), Length.inches(72))
   checkConversions(
     0,

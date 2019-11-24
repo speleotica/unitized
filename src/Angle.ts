@@ -22,11 +22,11 @@ class AngleUnit extends Unit<Angle> {
     super(type, id, { fromBaseFactor, toBaseFactor })
     this.range = new UnitizedNumber(range, this)
 
-    const unitize = (value: number): UnitizedNumber<Angle> =>
-      new UnitizedNumber(value, this)
+    const unitize: any = (value: number): UnitizedNumber<Angle> =>
+      new UnitizedNumber(value, unitize)
     Object.setPrototypeOf(unitize, this)
 
-    return unitize as any
+    return unitize
   }
 }
 
@@ -41,11 +41,11 @@ class PercentGradeUnit extends AngleUnit {
       range: NaN,
     })
 
-    const unitize = (value: number): UnitizedNumber<Angle> =>
-      new UnitizedNumber(value, this)
+    const unitize: any = (value: number): UnitizedNumber<Angle> =>
+      new UnitizedNumber(value, unitize)
     Object.setPrototypeOf(unitize, this)
 
-    return unitize as any
+    return unitize
   }
 
   fromBase(angle: number): number {
@@ -57,7 +57,7 @@ class PercentGradeUnit extends AngleUnit {
 }
 
 export default class Angle extends FactorTableUnitType<Angle> {
-  private readonly __nominal: void = undefined
+  private __nominal: void
   static readonly type: Angle = new Angle()
 
   constructor() {

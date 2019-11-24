@@ -2,7 +2,7 @@ import FactorTableUnitType from './FactorTableUnitType'
 import Unit, { CallableUnit } from './Unit'
 
 export default class Length extends FactorTableUnitType<Length> {
-  private readonly __nominal: void = undefined
+  private __nominal: void
   static readonly type: Length = new Length()
 
   static readonly kilometers = new Unit(Length.type, 'km', {

@@ -22,8 +22,10 @@ export default class Unit<T extends UnitType<T>> {
       toBaseFactor?: number
     }
   ) {
-    const unitize = (value: number): UnitizedNumber<T> =>
-      new UnitizedNumber(value, this)
+    // is this a bad idea?  Yeah probably, but we're gonna see
+    // if the convenience is worth it in the long run :)
+    const unitize: any = (value: number): UnitizedNumber<T> =>
+      new UnitizedNumber(value, unitize)
     Object.setPrototypeOf(unitize, this)
 
     this.type = type
@@ -31,7 +33,7 @@ export default class Unit<T extends UnitType<T>> {
     this.fromBaseFactor = fromBaseFactor != null ? fromBaseFactor : NaN
     this.toBaseFactor = toBaseFactor != null ? toBaseFactor : NaN
 
-    return unitize as any
+    return unitize
   }
 
   of(value: number): UnitizedNumber<T> {

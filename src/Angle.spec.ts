@@ -1,10 +1,22 @@
 /* eslint-env mocha */
 
-import { Angle, Length } from './index'
+import { describe, it } from 'mocha'
+import { Angle, Length, UnitizedNumber } from './index'
 import checkConversions from './checkConversions.spec'
 import { expect } from 'chai'
 
 describe('Angle', () => {
+  for (const unit of [
+    Angle.radians,
+    Angle.degrees,
+    Angle.gradians,
+    Angle.milsNATO,
+    Angle.percentGrade,
+  ]) {
+    it(`calling ${unit} as a function works`, () => {
+      expect(unit(2)).to.deep.equal(new UnitizedNumber(2, unit))
+    })
+  }
   checkConversions(
     0,
     Angle.degrees(90),
