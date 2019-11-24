@@ -19,13 +19,8 @@ class AngleUnit extends Unit<Angle> {
       range: number
     }
   ) {
-    super(type, id, { fromBaseFactor, toBaseFactor })
+    const unitize: any = super(type, id, { fromBaseFactor, toBaseFactor })
     this.range = new UnitizedNumber(range, this)
-
-    const unitize: any = (value: number): UnitizedNumber<Angle> =>
-      new UnitizedNumber(value, unitize)
-    Object.setPrototypeOf(unitize, this)
-
     return unitize
   }
 }
@@ -35,16 +30,11 @@ export type CallableAngleUnit = AngleUnit &
 
 class PercentGradeUnit extends AngleUnit {
   constructor(type: Angle) {
-    super(type, '% grade', {
+    const unitize: any = super(type, '% grade', {
       fromBaseFactor: NaN,
       toBaseFactor: NaN,
       range: NaN,
     })
-
-    const unitize: any = (value: number): UnitizedNumber<Angle> =>
-      new UnitizedNumber(value, unitize)
-    Object.setPrototypeOf(unitize, this)
-
     return unitize
   }
 
