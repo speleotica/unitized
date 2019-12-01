@@ -30,9 +30,9 @@ mixing quantities of different unit types, for instance lengths and angles.
 Here are some examples of what the API for this looks like:
 
 ```js
-Length.feet(1).add(Length.inches(6)) // 1.5 ft
-Length.feet(1).get(Length.meters) // 0.3048 m
-Length.feet(2).div(Length.inches(4)) // 6
+Unitize.feet(1).add(Unitize.inches(6)) // 1.5 ft
+Unitize.feet(1).get(Length.meters) // 0.3048 m
+Unitize.feet(2).div(Unitize.inches(4)) // 6
 
 type Point = {
   northing: UnitizedNumber<Length>,
@@ -65,6 +65,28 @@ function calculateLeg(
 
 # API
 
+## `Unitize`
+
+```js
+import { Unitize } from '@speleotica/unitized'
+```
+
+Contains shortcut functions for making unitized numbers.
+For example, `Unitize.meters(2)` is equivalent to `new UnitizedNumber(2, Length.meters)`.
+
+- `Unitize.meters`
+- `Unitize.centimeters`
+- `Unitize.kilometers`
+- `Unitize.feet`
+- `Unitize.inches`
+- `Unitize.yards`
+- `Unitize.miles`
+- `Unitize.radians`
+- `Unitize.degrees`
+- `Unitize.gradians` (1/400 of a unit circle)
+- `Unitize.milsNATO` (1/6400 of a unit circle)
+- `Unitize.percentGrade` (rise over run as %; 100% = 45 degrees)
+
 ## `Length`
 
 ```js
@@ -83,9 +105,6 @@ Contains length units:
 
 Each of these units is an instance of `Unit<Length>`.
 
-They may be called as functions; `Length.meters(3)` is
-equivalent to `new UnitizedNumber(3, Length.meters)`.
-
 ## `Angle`
 
 ```js
@@ -101,9 +120,6 @@ Contains angle units:
 - `Angle.percentGrade` (rise over run as %; 100% = 45 degrees)
 
 Each of these units is an instance of `Unit<Angle>`.
-
-They may be called as functions; `Angle.degrees(3)` is
-equivalent to `new UnitizedNumber(3, Angle.degrees)`.
 
 ### `static sin(angle: UnitizedNumber<Angle>): number`
 

@@ -19,23 +19,18 @@ class AngleUnit extends Unit<Angle> {
       range: number
     }
   ) {
-    const unitize: any = super(type, id, { fromBaseFactor, toBaseFactor })
+    super(type, id, { fromBaseFactor, toBaseFactor })
     this.range = new UnitizedNumber(range, this)
-    return unitize
   }
 }
 
-export type CallableAngleUnit = AngleUnit &
-  ((value: number) => UnitizedNumber<Angle>)
-
 class PercentGradeUnit extends AngleUnit {
   constructor(type: Angle) {
-    const unitize: any = super(type, '% grade', {
+    super(type, '% grade', {
       fromBaseFactor: NaN,
       toBaseFactor: NaN,
       range: NaN,
     })
-    return unitize
   }
 
   fromBase(angle: number): number {
@@ -81,25 +76,23 @@ export default class Angle extends FactorTableUnitType<Angle> {
     fromBaseFactor: 1,
     toBaseFactor: 1,
     range: Math.PI * 2,
-  }) as CallableAngleUnit
+  })
   static readonly degrees = new AngleUnit(Angle.type, 'deg', {
     fromBaseFactor: 180 / Math.PI,
     toBaseFactor: Math.PI / 180,
     range: 360,
-  }) as CallableAngleUnit
+  })
   static readonly gradians = new AngleUnit(Angle.type, 'grad', {
     fromBaseFactor: 200 / Math.PI,
     toBaseFactor: Math.PI / 200,
     range: 400,
-  }) as CallableAngleUnit
+  })
   static readonly milsNATO = new AngleUnit(Angle.type, 'mil', {
     fromBaseFactor: 3200 / Math.PI,
     toBaseFactor: Math.PI / 3200,
     range: 6400,
-  }) as CallableAngleUnit
-  static readonly percentGrade = new PercentGradeUnit(
-    Angle.type
-  ) as CallableAngleUnit
+  })
+  static readonly percentGrade = new PercentGradeUnit(Angle.type)
 
   static sin(angle: UnitizedNumber<Angle>): number {
     return Math.sin(angle.get(Angle.radians))
@@ -111,13 +104,13 @@ export default class Angle extends FactorTableUnitType<Angle> {
     return Math.tan(angle.get(Angle.radians))
   }
   static asin(value: number): UnitizedNumber<Angle> {
-    return Angle.radians(Math.asin(value))
+    return new UnitizedNumber(Math.asin(value), Angle.radians)
   }
   static acos(value: number): UnitizedNumber<Angle> {
-    return Angle.radians(Math.acos(value))
+    return new UnitizedNumber(Math.acos(value), Angle.radians)
   }
   static atan(value: number): UnitizedNumber<Angle> {
-    return Angle.radians(Math.atan(value))
+    return new UnitizedNumber(Math.atan(value), Angle.radians)
   }
   static atan2(y: number, x: number): UnitizedNumber<Angle>
   static atan2(
@@ -129,10 +122,13 @@ export default class Angle extends FactorTableUnitType<Angle> {
     x: number | UnitizedNumber<Length>
   ): UnitizedNumber<Angle> {
     if (typeof y === 'number' && typeof x === 'number') {
-      return Angle.radians(Math.atan2(y, x))
+      return new UnitizedNumber(Math.atan2(y, x), Angle.radians)
     }
     if (y instanceof UnitizedNumber && x instanceof UnitizedNumber) {
-      return Angle.radians(Math.atan2(y.get(y.unit), x.get(y.unit)))
+      return new UnitizedNumber(
+        Math.atan2(y.get(y.unit), x.get(y.unit)),
+        Angle.radians
+      )
     }
     throw new Error(`both x and y must be the same type`)
   }
