@@ -1,8 +1,9 @@
 coverage
 .nyc_output
 node_modules
-bin
+build
 es
+report
 .eslintcache
 /*.js
 /*.js.flow

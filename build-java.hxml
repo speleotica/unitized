@@ -16,4 +16,4 @@ DateTools
 # ...
 
 -cp src
--java bin/java
+-java build/java

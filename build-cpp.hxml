@@ -16,4 +16,4 @@ DateTools
 # ...
 
 -cp src
--cpp bin/cpp
+-cpp build/cpp

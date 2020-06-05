@@ -1,0 +1,64 @@
+## JavaScript
+--next
+-main TestMain
+-lib munit
+-cp src
+
+-cp test
+-js build/js_test.js
+
+# ## CPP
+# --next
+# -main TestMain
+# -lib munit
+# -cp src
+
+# -cp test
+# #-D HXCPP_M64
+# -cpp build/cpp_test
+
+## Java
+--next
+-main TestMain
+-lib munit
+-cp src
+
+-cp test
+-java build/java_test
+
+# ## CSharp
+# --next
+# -main TestMain
+# -lib munit
+# -cp src
+
+# -cp test
+# -cs build/cs_test
+
+# ## Python
+# --next
+# -main TestMain
+# -lib munit
+# -cp src
+
+# -cp test
+# -python build/python_test.py
+
+# JavaScript NodeJS
+--next
+-main TestMain
+-lib munit
+-lib hxnodejs
+-cp src
+
+-cp test
+-js build/js_test.js
+
+## HashLink
+--next
+-main TestMain
+-lib munit
+-cp src
+
+-cp test
+-hl build/hl_test.hl
