@@ -1,0 +1,19 @@
+-lib hxcpp
+-dce no
+
+# it's necessary to exclude haxe.macro, otherwise we run
+# into some errors for referencing macro API in non-macro context
+--macro include("haxe", true, ["haxe.macro"])
+
+# other packages / types you want can simply be listed as dot-paths
+# (see https://code.haxe.org/category/compilation/compiling-libraries-without-main-class.html)
+sys
+speleotica.unitized.Length
+
+# some toplevel types may need to be listed individually if there's
+# no references to them within std (generated into haxe.root on JVM)
+DateTools
+# ...
+
+-cp src
+-cpp bin/cpp
