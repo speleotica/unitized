@@ -3,6 +3,8 @@ package speleotica.unitized;
 class UnitType<T:UnitType<T>> {
 	private final units = new Map<String, Unit<T>>();
 
+	public function new() {}
+
 	public function get(id:String):Unit<T> {
 		return units[id];
 	}

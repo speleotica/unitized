@@ -1,11 +1,11 @@
-## JavaScript
---next
--main TestMain
--lib munit
--cp src
+# ## JavaScript
+# --next
+# -main TestMain
+# -lib munit
+# -cp src
 
--cp test
--js build/js_test.js
+# -cp test
+# -js build/js_test.js
 
 ## CPP
 --next
@@ -54,11 +54,11 @@
 -cp test
 -js build/js_test.js
 
-## HashLink
---next
--main TestMain
--lib munit
--cp src
+# ## HashLink
+# --next
+# -main TestMain
+# -lib munit
+# -cp src
 
--cp test
--hl build/hl_test.hl
+# -cp test
+# -hl build/hl_test.hl
