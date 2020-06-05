@@ -7,15 +7,15 @@
 -cp test
 -js build/js_test.js
 
-# ## CPP
-# --next
-# -main TestMain
-# -lib munit
-# -cp src
+## CPP
+--next
+-main TestMain
+-lib munit
+-cp src
 
-# -cp test
-# #-D HXCPP_M64
-# -cpp build/cpp_test
+-cp test
+#-D HXCPP_M64
+-cpp build/cpp_test
 
 ## Java
 --next

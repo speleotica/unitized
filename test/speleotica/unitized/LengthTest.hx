@@ -7,8 +7,20 @@ import massive.munit.Assert;
  * This is an example test class can be used as a template for writing normal and async tests
  * Refer to munit command line tool for more information (haxelib run munit)
  */
-class LengthTests {
+class LengthTest {
 	public function new() {}
+
+	@BeforeClass
+	public function beforeClass():Void {}
+
+	@AfterClass
+	public function afterClass():Void {}
+
+	@Before
+	public function setup():Void {}
+
+	@After
+	public function tearDown():Void {}
 
 	@Test
 	public function imperialTests() {

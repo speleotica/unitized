@@ -23,14 +23,14 @@ class UnitizedNumber<T:UnitType<T>> {
 	}
 
 	public function isInfinite():Bool {
-		return Math.isInfinite(value);
+		return value == Math.POSITIVE_INFINITY || value == Math.NEGATIVE_INFINITY;
 	}
 
 	public function isNaN():Bool {
 		return Math.isNaN(value);
 	}
 
-	public function in (unit : Unit<T>):UnitizedNumber<T> {
+	public function inUnit(unit:Unit<T>):UnitizedNumber<T> {
 		return new UnitizedNumber(get(unit), unit);
 	}
 
@@ -50,20 +50,20 @@ class UnitizedNumber<T:UnitType<T>> {
 		return value < 0;
 	}
 
-	public function isPositive():boolean {
+	public function isPositive():Bool {
 		return value > 0;
 	}
 
-	public function isZero():boolean {
+	public function isZero():Bool {
 		return value == 0;
 	}
 
-	public function isNonzero():boolean {
-		return value != = 0;
+	public function isNonzero():Bool {
+		return value != 0;
 	}
 
 	public function mod(modulus:UnitizedNumber<T>):UnitizedNumber<T> {
-		const newValue = value % modulus.get(unit);
+		final newValue = value % modulus.get(unit);
 		return newValue == value ? this : new UnitizedNumber(newValue, unit);
 	}
 
@@ -80,12 +80,12 @@ class UnitizedNumber<T:UnitType<T>> {
 	}
 
 	public function compare(other:UnitizedNumber<T>):Float {
-		const otherValue = other.get(unit);
-		const result = value - otherValue;
+		final otherValue = other.get(unit);
+		final result = value - otherValue;
 		return Math.isNaN(result) ? 0 : result;
 	}
 
-	public function toString():string {
-		return '${value} ${String(unit)}';
+	public function toString():String {
+		return '${value} ${unit}';
 	}
 }
